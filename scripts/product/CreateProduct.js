@@ -1,29 +1,27 @@
-const formEditProduct = document.querySelector('#formUpdateProduct')
+const formCreateProduct = document.querySelector('#formCreateProduct')
 
-formEditProduct.addEventListener('submit', async function(event) {
-    // Previne o comportamento padrão de submissão do formulário
+formCreateProduct.addEventListener('submit', async function(event) {
     event.preventDefault();
     
     let headersList = {
-        "Accept": "*/*",
-        "Content-Type": "application/json"
+      "Accept": "*/*",
+      "Content-Type": "application/json"
     }
+       
     try {
-      
-      const response = await fetch('http://127.0.0.1:8000/api/update', {
-        method: 'PUT',
+      const response = await fetch('http://127.0.0.1:8000/api/create', {
+        method: 'POST',
         body: JSON.stringify(getInfoProduct()), // Envie os dados do formulário
         headers: headersList
       });
   
-      // Verifica se a resposta foi bem-sucedida
       if (!response.ok) {
         throw new Error('Erro ao enviar formulário');
       }
   
-      // Lida com a resposta, se necessário
       const responseData = await response.json();
       console.log(responseData);
+      window.location.href = "./index.html";
     } catch (error) {
       console.error('Erro:', error);
     }
@@ -49,17 +47,9 @@ function getInfoProduct(){
     let adrres_supplier = document.querySelector('#adrres_supplier').value
     let numero = document.querySelector('#numero').value
 
-    const queryString = window.location.search;
 
-    // Cria um objeto URLSearchParams com a parte de pesquisa
-    const parametros = new URLSearchParams(queryString);
     
-    // Obtém o valor de um parâmetro específico
-    const id = parametros.get('id');
-
-
     const obj = {
-        productId: id,
         productCode: parseInt(productCode),
         productName: productName,
         productDesc: productDesc,

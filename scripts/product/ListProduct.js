@@ -1,5 +1,4 @@
 function ListItens(data){
-    console.log(data)
     const tbody = document.querySelector('#ListProduct tbody')
 
     data.forEach(element => {
@@ -58,52 +57,46 @@ function ListItens(data){
 
 
 async function GetData(){
-    try {
-        const response = await fetch('http://127.0.0.1:8000/api/getAll');
-        const data = await response.json();
-        console.log(data)
-        return data;
-    } catch (error) {
-        console.error('Ocorreu um erro ao buscar os dados:', error);
-        throw error; // Lançar novamente o erro para que ele seja capturado fora desta função
-    }
+  try {
+    const response = await fetch('http://127.0.0.1:8000/api/getAll');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Ocorreu um erro ao buscar os dados:', error);
+    throw error; 
+  }
 }
 
 async function fetchData() {
-    try {
-        const data = await GetData(); // Aguardar os dados
-        console.log(data); // Aqui você pode fazer o que quiser com os dados
-        ListItens(data)
-    } catch (error) {
-        // Lidar com erros, se houver
-        console.error('Ocorreu um erro ao buscar os dados:', error);
-    }
+  try {
+    const data = await GetData(); 
+    ListItens(data)
+  } catch (error) {
+    console.error('Ocorreu um erro ao buscar os dados:', error);
+  }
 }
-
 
 async function DeleteProduct(id){
-    let headersList = {
-        "Accept": "*/*",
-        "Content-Type": "application/json"
-      }
-      
-      try {
-        const response = await fetch('http://127.0.0.1:8000/api/delete', {
-          method: 'Delete',
-          body: JSON.stringify({id: id}), // Envie os dados do formulário
-          headers: headersList
-        });
+  let headersList = {
+    "Accept": "*/*",
+    "Content-Type": "application/json"
+  }
     
-        if (!response.ok) {
-          throw new Error('Erro ao enviar formulário');
-        }
-    
-        const responseData = await response.json();
-        console.log(responseData);
-      } catch (error) {
-        console.error('Erro:', error);
-      }
-}
+  try {
+    const response = await fetch('http://127.0.0.1:8000/api/delete', {
+      method: 'Delete',
+      body: JSON.stringify({id: id}), 
+      headers: headersList
+    });
 
+    if (!response.ok) {
+      throw new Error('Erro ao enviar formulário');
+    }
+
+    const responseData = await response.json();
+  } catch (error) {
+    console.error('Erro:', error);
+  }
+}
 
 fetchData()

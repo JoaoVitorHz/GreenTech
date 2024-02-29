@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,11 +13,12 @@
     <title>Document</title>
 </head>
 <body>
+    
     <header>
         <div class="logo">
             <img src="./assets/images/GreenTech.png" alt="">
         </div>
-         
+    
         <nav>
             <div class="menu-produto">
                 <a href="./index.html">Listar Produto</a>
@@ -30,27 +32,22 @@
     </header>
 
     <main>
-        <table id="ListProduct">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Codigo Produto</th>
-                    <th>Nome Produto</th>
-                    <th>Descrição Produto</th>
-                    <th>Preço</th>
-                    <th>Categoria</th>
-                    <th>Quantidade</th>
-                    <th>Id Fornecedor</th>
-                </tr>
-            </thead>
-           
-            <tbody>
-                
-            </tbody>
-           
-        </table>
-    </main>
+        <form action="" id="formCreateSupplier">
+            <h3>Criar fornecedor</h3>
 
-    <script src="scripts/product/ListProduct.js"></script>
+            <input type="text" id="name_supplier" placeholder="Nome fornecedor">
+            <input type="text" id="email_supplier" placeholder="Email fornecedor">
+            <input type="text" id="phone_supplier" placeholder="Telefone Fornecedor">
+            <input type="text" id="cep_supplier" placeholder="CEP fornecedor">
+            <input type="text" id="state_supplier" placeholder="Estado Fornecedor">
+            <input type="text" id="city_supplier" placeholder="Cidade Fornecedor">
+            <input type="text" id="neighborhood_supplier" placeholder="Bairro">
+            <input type="text" id="address_supplier" placeholder="Endereço">
+            <input type="text" id="numberHouse" placeholder="Numero">
+
+            <button type="submit" id="btnCreateSupplier">Cadastrar Fornecedor</button>
+        </form>
+    </main>
+    <script src="scripts/supplier/CreateSupplier.js"></script>
 </body>
 </html>
