@@ -49,3 +49,44 @@ function getInfoSupplier(){
       number_house_supplier: numberHouse,
     }
 }
+
+function setAddresInput(dataAddress){
+  document.querySelector('#state_supplier').value = dataAddress.uf
+  document.querySelector('#city_supplier').value = dataAddress.localidade
+  document.querySelector('#neighborhood_supplier').value = dataAddress.bairro
+  document.querySelector('#address_supplier').value = dataAddress.logradouro
+}
+
+
+async function GetAddres(cep){
+
+  try {
+    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const data = await response.json();
+    console.log(data)
+    return data;
+  } catch (error) {
+    console.error('Ocorreu um erro ao buscar os dados:', error);
+    throw error; 
+  }
+}
+
+async function fetchAddress(cep) {
+  try {
+    const data = await GetAddres(cep); 
+    return (data)
+  } catch (error) {
+    console.error('Ocorreu um erro ao buscar os dados:', error);
+  }
+}
+
+
+document.querySelector('#cep_supplier').addEventListener('input', (async (e)  =>{
+  if(e.target.value.length == 8){
+
+    const response = await fetch(`https://viacep.com.br/ws/${e.target.value}/json/`);
+    const data = await response.json();
+    console.log(data)
+    setAddresInput(data)
+  }
+}))
