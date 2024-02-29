@@ -9,7 +9,7 @@ formEditProduct.addEventListener('submit', async function(event) {
     }
     try {
       
-      const response = await fetch('http://127.0.0.1:8000/api/update', {
+      const response = await fetch('http://127.0.0.1:8000/api/updateProduct', {
         method: 'PUT',
         body: JSON.stringify(getInfoProduct()), 
         headers: headersList
@@ -48,5 +48,49 @@ function getInfoProduct(){
       productPrice: productPrice,
       productCategory: productCategory,
       productQtd: parseInt(productQtd),
+      name_supplier: productCustomer,
     }
 }
+
+async function InsertSupplier(){
+  const response = await fetch('http://127.0.0.1:8000/api/getAllSupplier');
+  const suppliers = await response.json();
+
+  const SelectsName = document.querySelector('#productCustomer')
+
+  suppliers.forEach((supplier) => {
+            
+    let supplierName = document.createElement('option')
+    supplierName.innerHTML = supplier.name
+    supplierName.setAttribute('value', supplier.name)
+    SelectsName.appendChild(supplierName)
+  })
+}
+
+async function GetDataProduct(){
+  const queryString = window.location.search;
+  const parametros = new URLSearchParams(queryString);
+
+  const id = parametros.get('id');
+
+  let headersList = {
+    "Accept": "*/*",
+    "Content-Type": "application/json"
+  }
+  const response = await fetch('http://127.0.0.1:8000/api/getProduct', {
+    method: 'POST',
+    body: JSON.stringify({id: id}),
+    headers: headersList
+  });
+  const product = await response.json();
+
+ document.querySelector('#productCode').value = product.code
+ document.querySelector('#productName').value = product.name
+ document.querySelector('#productDesc').value = product.describe
+ document.querySelector('#productPrice').value = product.price
+ document.querySelector('#productCategorie').value = product.category
+ document.querySelector('#productCustomer').value = product.supplier
+ document.querySelector('#productQtd').value = product.qtd
+}
+GetDataProduct()
+InsertSupplier()

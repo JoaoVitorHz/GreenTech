@@ -29,7 +29,7 @@ function ListItens(data){
         row.appendChild(rowItemState)
         
         let rowItemIdCity = document.createElement('td')
-        rowItemIdCity.innerHTML = element.City
+        rowItemIdCity.innerHTML = element.city
         row.appendChild(rowItemIdCity)
 
         let rowItemIdNeighborhood = document.createElement('td')

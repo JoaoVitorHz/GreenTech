@@ -94,3 +94,32 @@ document.querySelector('#cep_supplier').addEventListener('input', (async (e)  =>
         setAddresInput(data)
     }
 }))
+
+async function GetDataSupplier(){
+    const queryString = window.location.search;
+    const parametros = new URLSearchParams(queryString);
+  
+    const id = parametros.get('id');
+  
+    let headersList = {
+      "Accept": "*/*",
+      "Content-Type": "application/json"
+    }
+    const response = await fetch('http://127.0.0.1:8000/api/getSupplier', {
+      method: 'POST',
+      body: JSON.stringify({id: id}),
+      headers: headersList
+    });
+    const supplier = await response.json();
+  
+    document.querySelector('#name_supplier').value = supplier.name
+    document.querySelector('#email_supplier').value = supplier.email
+    document.querySelector('#phone_supplier').value = supplier.phone
+    document.querySelector('#cep_supplier').value = supplier.cep
+    document.querySelector('#state_supplier').value = supplier.state
+    document.querySelector('#city_supplier').value = supplier.city
+    document.querySelector('#neighborhood_supplier').value = supplier.neighborhood
+    document.querySelector('#address_supplier').value = supplier.address
+    document.querySelector('#numberHouse').value = supplier.number
+  }
+  GetDataSupplier()

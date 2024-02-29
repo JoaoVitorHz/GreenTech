@@ -9,7 +9,7 @@ formCreateProduct.addEventListener('submit', async function(event) {
     }
        
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/create', {
+      const response = await fetch('http://127.0.0.1:8000/api/createProduct', {
         method: 'POST',
         body: JSON.stringify(getInfoProduct()), // Envie os dados do formulário
         headers: headersList
@@ -27,7 +27,6 @@ formCreateProduct.addEventListener('submit', async function(event) {
     }
 });
 
-
 function getInfoProduct(){
     let productCode = document.querySelector('#productCode').value
     let productName = document.querySelector('#productName').value
@@ -36,37 +35,33 @@ function getInfoProduct(){
     let productCategory = document.querySelector('#productCategorie').value
     let productCustomer = document.querySelector('#productCustomer').value
     let productQtd = document.querySelector('#productQtd').value
-
-    let name_supplier = document.querySelector('#name_supplier').value
-    let email_supplier = document.querySelector('#email_supplier').value
-    let phone_supplier = document.querySelector('#phone_supplier').value
-    let cep_supplier = document.querySelector('#cep_supplier').value
-    let state_supplier = document.querySelector('#state_supplier').value
-    let city_supplier = document.querySelector('#city_supplier').value
-    let neighborhood_supplier = document.querySelector('#neighborhood_supplier').value
-    let adrres_supplier = document.querySelector('#adrres_supplier').value
-    let numero = document.querySelector('#numero').value
-
-
     
     const obj = {
-        productCode: parseInt(productCode),
-        productName: productName,
-        productDesc: productDesc,
-        productPrice: productPrice,
-        productCategory: productCategory,
-        productQtd: parseInt(productQtd),
-
-        name_supplier: productCustomer ,
-        email_supplier: email_supplier,
-        phone_supplier: phone_supplier,
-        cep_supplier: cep_supplier ,
-        state_supplier: state_supplier,
-        city_supplier: city_supplier,
-        neighborhood_supplier: neighborhood_supplier,
-        adrres_supplier: adrres_supplier,
-        numero: numero,
+      productCode: parseInt(productCode),
+      productName: productName,
+      productDesc: productDesc,
+      productPrice: productPrice,
+      productCategory: productCategory,
+      productQtd: parseInt(productQtd),
+      name_supplier: productCustomer,
     }
 
     return obj;
 }
+
+async function InsertSupplier(){
+  const response = await fetch('http://127.0.0.1:8000/api/getAllSupplier');
+  const suppliers = await response.json();
+
+  const SelectsName = document.querySelector('#productCustomer')
+
+  suppliers.forEach((supplier) => {
+            
+    let supplierName = document.createElement('option')
+    supplierName.innerHTML = supplier.name
+    supplierName.setAttribute('value', supplier.name)
+    SelectsName.appendChild(supplierName)
+  })
+}
+
+InsertSupplier()

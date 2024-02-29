@@ -55,10 +55,9 @@ function ListItens(data){
     });
 }
 
-
 async function GetData(){
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/getAll');
+    const response = await fetch('http://127.0.0.1:8000/api/getAllProduct');
     const data = await response.json();
     return data;
   } catch (error) {
@@ -83,7 +82,7 @@ async function DeleteProduct(id){
   }
     
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/delete', {
+    const response = await fetch('http://127.0.0.1:8000/api/deleteProduct', {
       method: 'Delete',
       body: JSON.stringify({id: id}), 
       headers: headersList

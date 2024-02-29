@@ -95,7 +95,7 @@ form{
     border-radius: 5px;
 }
 
-form input{
+form input, form select{
     padding: 5px 10px;
     width: 300px;
 
