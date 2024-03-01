@@ -15,35 +15,64 @@
 <body>
     
     <header>
-        <div class="logo">
-            <h1><strong>Green</strong>Tech</h1>
-         </div>
-    
-        <nav>
-            <div class="menu-produto">
+        <div class="header">
+            <div class="logo">
+                <h1>GreenTech</h1>
+             </div>
+             <nav>
                 <a href="./index.html">Listar Produto</a>
                 <a href="./createProduct.html">Criar Produto</a>
-            </div>
-            <div class="menu-fornecedor">
                 <a href="./createSupplier.html">Criar Fornecedor</a>
                 <a href="./listSupplier.html">Listar Fornecedor</a>
-            </div>
-        </nav>
+             </nav>
+        </div>
     </header>
 
     <main>
+        <div class="div-main-title">
+            <h1>Editar Fornecedor</h1>
+            <span>Editar Fornecedor</span>
+        </div>
         <form action="" id="formUpdateSupplier">
-            <h3>Editar fornecedor</h3>
+            <h3>Editar um Fornecedor</h3>
+            <span>Edite os campos abaixo para editar um Fornecedor</span>
             
-            <input type="text" id="name_supplier" placeholder="Nome fornecedor">
-            <input type="text" id="email_supplier" placeholder="Email fornecedor">
-            <input type="text" id="phone_supplier" placeholder="Telefone Fornecedor">
-            <input type="text" id="cep_supplier" placeholder="CEP fornecedor">
-            <input type="text" id="state_supplier" placeholder="Estado Fornecedor">
-            <input type="text" id="city_supplier" placeholder="Cidade Fornecedor">
-            <input type="text" id="neighborhood_supplier" placeholder="Bairro">
-            <input type="text" id="address_supplier" placeholder="Endereço">
-            <input type="text" id="numberHouse" placeholder="Numero">
+            <div>
+                <span>Codigo</span>
+                <input type="text" id="name_supplier">
+            </div>
+            <div>
+                <span>Codigo</span>
+                <input type="text" id="email_supplier">
+            </div>
+            <div>
+                <span>Codigo</span>
+                <input type="text" id="phone_supplier">
+            </div>
+            <div>
+                <span>Codigo</span>
+                <input type="text" id="cep_supplier">
+            </div>
+            <div>
+                <span>Codigo</span>
+                <input type="text" id="state_supplier">
+            </div>
+            <div>
+                <span>Codigo</span>
+                <input type="text" id="city_supplier">
+            </div>
+            <div>
+                <span>Codigo</span>
+                <input type="text" id="neighborhood_supplier">
+            </div>
+            <div>
+                <span>Codigo</span>
+                <input type="text" id="address_supplier">
+            </div>
+            <div>
+                <span>Codigo</span>
+                <input type="text" id="numberHouse">
+            </div>
 
             <button type="submit" id="btnCreateSupplier">Editar Fornecedor</button>
         </form>

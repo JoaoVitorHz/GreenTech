@@ -3,72 +3,66 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
+    color: #aaa;
+    overflow-x: hidden;
 }
 
 body{
-    background-color: #222736;   
-    color: #A6B0CF;
+    background-color: black;   
 }
-
 
 header{
     width: 100vw;
-    height: 70px;
-    padding: 20px;
-
-    box-shadow: 0 0 1px #000;
+    height: 50px;
+    background-color: black;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.header{
+    width: 70%;
+    height: 100%;
+    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .logo h1{
-    font-size: 40px;
+    font-size: 18px;
     font-weight: 400;
 }
-
-.logo strong{
-    color: green;
-}
-
-
-
 nav {
     display: flex;
-    gap: 50px;
+    gap: 30px;
 }
-
-
 nav a{
     text-decoration: none;
-    color: #000;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 14px;
 }
 
-nav div {
-    display: flex;
-    gap: 50px;
-}
 
-.menu-produto a{
-    color: rgb(17, 85, 148);
-}
-.menu-fornecedor a{
-    color: rgb(192, 111, 6);
-}
-
+/* Section Styles Start */
 main{
     width: 100vw;
-    height: calc(100vh - 70px);
+    min-height: calc(100vh - 70px);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 200px;
+    gap: 50px;
 }
-.table-container{
-    background-color: #2a3042;
-    padding: 20px;
+.div-main-title{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.div-main-title h1{
+    color: white;
+    font-size: 50px;
+}
 
+.table-container{
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -78,56 +72,83 @@ main{
     font-weight: 600;
 }
 table, th, td {
-    border: 1px solid #A6B0CF;
     border-collapse: collapse;
     padding: 10px 20px;
-    font-weight: 400;
+    font-weight: 500;
 }
+tr{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+td{
+    color: white;
+}
+td a{
+    display: block; 
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+td a:hover{
+    background-color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+}
+
 
 form{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 10px;
 
-    background-color: #2a3042;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 20px;
     border-radius: 5px;
 }
 
+form h3{
+    font-size: 27px;
+    color: white;
+}
+form span{
+    font-size: 14px;
+}
+form div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+form div span{
+    color: white;
+}
 form input, select{
     padding: 5px 10px;
-    width: 300px;
+    width: 100%;
 
-    border: 1px solid #32394e;
-    background-color: #2e3446;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: transparent;
     color: white;
 
     padding: 10px 20px;
     border-radius: 5px;
 
+    outline: none;
+
+}
+select{
+    background-color: black;
 }
 form input::-webkit-input-placeholder { /* Para navegadores baseados no WebKit */
-    color: #A6B0CF;
+    color: #888;
 }
 
 form button{
-    background-color: green;
-    color: white;
+    background-color: white;
+    color: black;
     padding: 10px 20px;
     border-radius: 5px;
     border: 0;
     cursor: pointer;
 }
 
-td a{
-    display: block; 
-    padding: 10px 20px;
-    background-color: green;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-}
-td a:hover{
-    background-color: rgba(255, 255, 255, 0.2);
-}

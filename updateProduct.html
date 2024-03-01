@@ -15,36 +15,58 @@
 <body>
     
     <header>
-        <div class="logo">
-            <h1><strong>Green</strong>Tech</h1>
-         </div>
-    
-        <nav>
-            <div class="menu-produto">
+        <div class="header">
+            <div class="logo">
+                <h1>GreenTech</h1>
+             </div>
+             <nav>
                 <a href="./index.html">Listar Produto</a>
                 <a href="./createProduct.html">Criar Produto</a>
-            </div>
-            <div class="menu-fornecedor">
                 <a href="./createSupplier.html">Criar Fornecedor</a>
                 <a href="./listSupplier.html">Listar Fornecedor</a>
-            </div>
-        </nav>
+             </nav>
+        </div>
     </header>
 
     <main>
+        <div class="div-main-title">
+            <h1>Editar Produtos</h1>
+            <span>Editar seus produtos</span>
+        </div>
         <form action="" id="formUpdateProduct">
             <h3>Editar um Produto</h3>
+            <span>Edite os campos abaixo para editar um produto</span>
 
-            <input type="text" id="productCode" placeholder="Código">
-            <input type="text" id="productName" placeholder="Nome do Produto">
-            <input type="text" id="productDesc" placeholder="Descrição">
-            <input type="text" id="productPrice" placeholder="Preço Unitario">
-            <input type="text" id="productCategorie" placeholder="Categoria">
-            <select name="" id="productCustomer">
+            <div>
+                <span>Codigo</span>
+                <input type="text" id="productCode">
+            </div>
+            <div>
+                <span>Nome </span>
+                <input type="text" id="productName">
+            </div>
+            <div>
+                <span>Descrição</span>
+                <input type="text" id="productDesc">
+            </div>
+            <div>
+                <span>Preço</span>
+                <input type="text" id="productPrice">
+            </div>
+            <div>
+                <span>Categoria</span>
+                <input type="text" id="productCategorie">
+            </div>
+            <div>
+                <span>Fornecedor</span>
+                <select name="" id="productCustomer"></select>
+            </div>
+            <div>
+                <span>Quantidade</span>
+                <input type="text" id="productQtd">
+            </div>
 
-            </select>
-            <input type="text" id="productQtd" placeholder="Quantidade em estoque">
-            <button type="submit" >Cadastrar</button>
+            <button type="submit">Editar</button>
         </form>
     </main>
 

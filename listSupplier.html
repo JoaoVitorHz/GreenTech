@@ -13,27 +13,26 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <h1><strong>Green</strong>Tech</h1>
-         </div>
-         
-        <nav>
-            <div class="menu-produto">
+        <div class="header">
+            <div class="logo">
+                <h1>GreenTech</h1>
+             </div>
+             <nav>
                 <a href="./index.html">Listar Produto</a>
                 <a href="./createProduct.html">Criar Produto</a>
-            </div>
-            <div class="menu-fornecedor">
                 <a href="./createSupplier.html">Criar Fornecedor</a>
                 <a href="./listSupplier.html">Listar Fornecedor</a>
-            </div>
-        </nav>
+             </nav>
+        </div>
     </header>
 
     <main>
+        <div class="div-main-title">
+            <h1>Listagem de Fornecedor</h1>
+            <span>Listagem de todos os fornecedores cadastrados no sistema</span>
+        </div>
 
         <div class="table-container">
-            <span>Listagem de Fornecedores</span>
-
             <table id="ListSupplier">
                 <thead>
                     <tr>
@@ -49,14 +48,9 @@
                         <th>Numero</th>
                     </tr>
                 </thead>
-               
-                <tbody>
-                    
-                </tbody>
-               
+                <tbody></tbody>
             </table>
         </div>
-        
     </main>
 
     <script src="scripts/supplier/ListSupplier.js"></script>
