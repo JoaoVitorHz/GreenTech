@@ -1,3 +1,4 @@
+const URL = "http://127.0.0.1:8000/api";
 const formCreateProduct = document.querySelector('#formCreateProduct')
 
 formCreateProduct.addEventListener('submit', async function(event) {
@@ -9,7 +10,7 @@ formCreateProduct.addEventListener('submit', async function(event) {
     }
        
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/createProduct', {
+      const response = await fetch(URL + '/createProduct', {
         method: 'POST',
         body: JSON.stringify(getInfoProduct()), // Envie os dados do formulário
         headers: headersList
@@ -50,7 +51,7 @@ function getInfoProduct(){
 }
 
 async function InsertSupplier(){
-  const response = await fetch('http://127.0.0.1:8000/api/getAllSupplier');
+  const response = await fetch(URL + '/getAllSupplier');
   const suppliers = await response.json();
 
   const SelectsName = document.querySelector('#productCustomer')

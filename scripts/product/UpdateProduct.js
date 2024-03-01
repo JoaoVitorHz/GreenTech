@@ -1,3 +1,4 @@
+const URL = "http://127.0.0.1:8000/api";
 const formEditProduct = document.querySelector('#formUpdateProduct')
 
 formEditProduct.addEventListener('submit', async function(event) {
@@ -9,7 +10,7 @@ formEditProduct.addEventListener('submit', async function(event) {
     }
     try {
       
-      const response = await fetch('http://127.0.0.1:8000/api/updateProduct', {
+      const response = await fetch(URL + '/updateProduct', {
         method: 'PUT',
         body: JSON.stringify(getInfoProduct()), 
         headers: headersList
@@ -53,7 +54,7 @@ function getInfoProduct(){
 }
 
 async function InsertSupplier(){
-  const response = await fetch('http://127.0.0.1:8000/api/getAllSupplier');
+  const response = await fetch(URL + '/getAllSupplier');
   const suppliers = await response.json();
 
   const SelectsName = document.querySelector('#productCustomer')
@@ -77,7 +78,7 @@ async function GetDataProduct(){
     "Accept": "*/*",
     "Content-Type": "application/json"
   }
-  const response = await fetch('http://127.0.0.1:8000/api/getProduct', {
+  const response = await fetch(URL + '/getProduct', {
     method: 'POST',
     body: JSON.stringify({id: id}),
     headers: headersList

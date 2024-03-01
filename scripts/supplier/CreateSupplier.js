@@ -1,3 +1,5 @@
+const URL = "http://127.0.0.1:8000/api";
+
 const formCreateSupplier = document.querySelector('#formCreateSupplier')
 
 formCreateSupplier.addEventListener('submit', async function(event) {
@@ -9,7 +11,7 @@ formCreateSupplier.addEventListener('submit', async function(event) {
     }
        
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/createSupplier', {
+      const response = await fetch(URL + '/createSupplier', {
         method: 'POST',
         body: JSON.stringify(getInfoSupplier()), 
         headers: headersList
@@ -56,30 +58,6 @@ function setAddresInput(dataAddress){
   document.querySelector('#neighborhood_supplier').value = dataAddress.bairro
   document.querySelector('#address_supplier').value = dataAddress.logradouro
 }
-
-
-async function GetAddres(cep){
-
-  try {
-    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-    const data = await response.json();
-    console.log(data)
-    return data;
-  } catch (error) {
-    console.error('Ocorreu um erro ao buscar os dados:', error);
-    throw error; 
-  }
-}
-
-async function fetchAddress(cep) {
-  try {
-    const data = await GetAddres(cep); 
-    return (data)
-  } catch (error) {
-    console.error('Ocorreu um erro ao buscar os dados:', error);
-  }
-}
-
 
 document.querySelector('#cep_supplier').addEventListener('input', (async (e)  =>{
   if(e.target.value.length == 8){

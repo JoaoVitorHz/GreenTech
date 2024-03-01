@@ -1,3 +1,5 @@
+const URL = "http://127.0.0.1:8000/api";
+
 function ListItens(data){
     const tbody = document.querySelector('#ListProduct tbody')
 
@@ -45,6 +47,7 @@ function ListItens(data){
 
         let rowItemActionDelete = document.createElement('td')
         let deleteAction = document.createElement('a')
+        deleteAction.classList.add('btnRemove')
         deleteAction.innerHTML = "Deletar Produto"
         deleteAction.addEventListener('click', () => DeleteProduct(element.id))
 
@@ -57,7 +60,7 @@ function ListItens(data){
 
 async function GetData(){
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/getAllProduct');
+    const response = await fetch(URL + '/getAllProduct');
     const data = await response.json();
     return data;
   } catch (error) {
@@ -81,21 +84,12 @@ async function DeleteProduct(id){
     "Content-Type": "application/json"
   }
     
-  try {
-    const response = await fetch('http://127.0.0.1:8000/api/deleteProduct', {
+    const response = await fetch(URL + '/deleteProduct', {
       method: 'Delete',
       body: JSON.stringify({id: id}), 
       headers: headersList
     });
-
-    if (!response.ok) {
-      throw new Error('Erro ao enviar formulário');
-    }
-
-    const responseData = await response.json();
-  } catch (error) {
-    console.error('Erro:', error);
-  }
+    location.reload();
 }
 
 fetchData()
