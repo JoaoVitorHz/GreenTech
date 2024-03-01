@@ -8,22 +8,20 @@ formEditProduct.addEventListener('submit', async function(event) {
         "Accept": "*/*",
         "Content-Type": "application/json"
     }
-    try {
-      
-      const response = await fetch(URL + '/updateProduct', {
-        method: 'PUT',
-        body: JSON.stringify(getInfoProduct()), 
-        headers: headersList
-      });
-  
-      if (!response.ok) {
-        throw new Error('Erro ao enviar formulário');
+    let data = getInfoProduct()
+
+    if(data != false){
+      try {
+        await fetch(URL + '/updateProduct', {
+          method: 'PUT',
+          body: JSON.stringify(data), 
+          headers: headersList
+        });
+    
+        window.location.href = "./index.html";
+      } catch (error) {
+        console.error('Erro:', error);
       }
-  
-      const responseData = await response.json();
-      window.location.href = "./index.html";
-    } catch (error) {
-      console.error('Erro:', error);
     }
 });
 
@@ -40,6 +38,18 @@ function getInfoProduct(){
     const queryString = window.location.search;
     const parametros = new URLSearchParams(queryString);
     const id = parametros.get('id');
+
+    let isValid = VerifyField(
+      productCode, 
+      productName, 
+      productDesc, 
+      productPrice, 
+      productCategory, 
+      productCustomer, 
+      productQtd
+    )
+      if(isValid == false)
+        return false;
 
     return {
       productId: id,
@@ -93,5 +103,53 @@ async function GetDataProduct(){
  document.querySelector('#productCustomer').value = product.supplier
  document.querySelector('#productQtd').value = product.qtd
 }
+
+function VerifyField(
+  productCode,
+  productName,
+  productDesc, 
+  productPrice, 
+  productCategory,
+  productCustomer,
+  productQtd
+){
+  if (productCode === '') {
+    alert('Por favor, preencha o campo código.');
+    return false;
+  }
+  if (productName === '') {
+      alert('Por favor, preencha o campo nome.');
+      return false;
+  }
+  if (productDesc === '') {
+      alert('Por favor, preencha o campo descrição.');
+      return false;
+  }
+  if (productPrice === '') {
+      alert('Por favor, preencha o campo preço.');
+      return false;
+  }
+  if (productCategory === '') {
+      alert('Por favor, preencha o campo categoria.');
+      return false;
+  }
+  if (productCustomer === '') {
+      alert('Por favor, preencha o campo fornecedor.');
+      return false;
+  }
+  if (productQtd === '') {
+      alert('Por favor, preencha o campo quantidade.');
+      return false;
+  }
+  if (isNaN(productPrice)) {
+      alert('Por favor, insira um valor numérico válido para o preço.');
+      return false;
+  }
+  if (isNaN(productQtd)) {
+      alert('Por favor, insira um valor numérico válido para a quantidade.');
+      return false;
+  }
+}
+
 GetDataProduct()
 InsertSupplier()

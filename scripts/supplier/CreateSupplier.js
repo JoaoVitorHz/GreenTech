@@ -9,23 +9,27 @@ formCreateSupplier.addEventListener('submit', async function(event) {
       "Accept": "*/*",
       "Content-Type": "application/json"
     }
-       
-    try {
-      const response = await fetch(URL + '/createSupplier', {
-        method: 'POST',
-        body: JSON.stringify(getInfoSupplier()), 
-        headers: headersList
-      });
-  
-      if (!response.ok) {
-        throw new Error('Erro ao enviar formulário');
-      }
-      const responseData = await response.json();
-      window.location.href = "./listSupplier.html";
+    const data = getInfoSupplier()
 
-    } catch (error) {
-      console.error('Erro:', error);
+    if(data != false){
+      try {
+        const response = await fetch(URL + '/createSupplier', {
+          method: 'POST',
+          body: JSON.stringify(data), 
+          headers: headersList
+        });
+    
+        if (!response.ok) {
+          throw new Error('Erro ao enviar formulário');
+        }
+        const responseData = await response.json();
+        window.location.href = "./listSupplier.html";
+  
+      } catch (error) {
+        console.error('Erro:', error);
+      }
     }
+    
 });
 
 function getInfoSupplier(){
@@ -39,6 +43,21 @@ function getInfoSupplier(){
     let address_supplier = document.querySelector('#address_supplier').value
     let numberHouse = document.querySelector('#numberHouse').value
     
+    let isValid = VerifyFields(
+      name_supplier, 
+      email_supplier,
+      phone_supplier,
+      cep_supplier, 
+      state_supplier, 
+      city_supplier, 
+      neighborhood_supplier, 
+      address_supplier, 
+      numberHouse
+    )
+    
+    if(isValid == false)
+      return false
+
     return{
       name_supplier: name_supplier,
       email_supplier: email_supplier,
@@ -68,3 +87,65 @@ document.querySelector('#cep_supplier').addEventListener('input', (async (e)  =>
     setAddresInput(data)
   }
 }))
+
+function VerifyFields(name_supplier, 
+  email_supplier,
+  phone_supplier,
+  cep_supplier, 
+  state_supplier, 
+  city_supplier, 
+  neighborhood_supplier, 
+  address_supplier, 
+  numberHouse
+){
+  if (email_supplier === '') {
+    alert('Por favor, preencha o campo email.');
+    return false;
+  }
+  if (name_supplier === '') {
+    alert('Por favor, preencha o campo nome.');
+    return false;
+  }
+  if (phone_supplier === '') {
+      alert('Por favor, preencha o campo telefone.');
+      return false;
+  }
+  if (cep_supplier === '') {
+      alert('Por favor, preencha o campo cep.');
+      return false;
+  }
+  if (state_supplier === '') {
+      alert('Por favor, preencha o campo estado.');
+      return false;
+  }
+  if (city_supplier === '') {
+      alert('Por favor, preencha o campo cidade.');
+      return false;
+  }
+  if (neighborhood_supplier === '') {
+      alert('Por favor, preencha o campo bairro.');
+      return false;
+  }
+  if (numberHouse === '') {
+      alert('Por favor, preencha o campo numero.');
+      return false;
+  }
+  if (address_supplier === '') {
+      alert('Por favor, preencha o campo endereço.');
+      return false;
+  }
+
+  // Verificar se o preço e quantidade são números
+  if (isNaN(phone_supplier)) {
+    alert('Por favor, insira um valor numérico válido para o telefone.');
+    return false;
+  }
+  if (isNaN(numberHouse)) {
+    alert('Por favor, insira um valor numérico válido para o numero.');
+    return false;
+  }
+  if (isNaN(cep_supplier)) {
+    alert('Por favor, insira um valor numérico válido para o cep.');
+    return false;
+  }
+}

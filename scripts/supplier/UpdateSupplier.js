@@ -9,22 +9,26 @@ formEditSupplier.addEventListener('submit', async function(event) {
         "Accept": "*/*",
         "Content-Type": "application/json"
     }
-    try {
-        const response = await fetch(URL + '/updateSupplier', {
-            method: 'PUT',
-            body: JSON.stringify(getInfoSupplier()),
-            headers: headersList
-        });
+    let data = getInfoSupplier()
 
-        if (!response.ok) {
-            throw new Error('Erro ao enviar formulário');
+    if(data != false){
+        try {
+            const response = await fetch(URL + '/updateSupplier', {
+                method: 'PUT',
+                body: JSON.stringify(data),
+                headers: headersList
+            });
+    
+            if (!response.ok) {
+                throw new Error('Erro ao enviar formulário');
+            }
+      
+            const responseData = await response.json();
+            console.log(responseData);
+            window.location.href = "./listSupplier.html";
+        } catch (error) {
+            console.error('Erro:', error);
         }
-  
-        const responseData = await response.json();
-        console.log(responseData);
-        window.location.href = "./listSupplier.html";
-    } catch (error) {
-        console.error('Erro:', error);
     }
 });
 
@@ -43,6 +47,21 @@ function getInfoSupplier(){
     const queryString = window.location.search;
     const parametros = new URLSearchParams(queryString);
     const id = parametros.get('id');
+
+    let isValid = VerifyFields(
+        name_supplier, 
+        email_supplier,
+        phone_supplier,
+        cep_supplier, 
+        state_supplier, 
+        city_supplier, 
+        neighborhood_supplier, 
+        address_supplier, 
+        numberHouse
+    )
+
+    if(isValid == false)    
+        return false;
 
     return obj = {
         id_supplier: id,
@@ -102,3 +121,67 @@ async function GetDataSupplier(){
     document.querySelector('#numberHouse').value = supplier.number
   }
   GetDataSupplier()
+
+
+function VerifyFields(
+    name_supplier, 
+    email_supplier,
+    phone_supplier,
+    cep_supplier, 
+    state_supplier, 
+    city_supplier, 
+    neighborhood_supplier, 
+    address_supplier, 
+    numberHouse
+  ){
+    if (email_supplier === '') {
+      alert('Por favor, preencha o campo email.');
+      return false;
+    }
+    if (name_supplier === '') {
+      alert('Por favor, preencha o campo nome.');
+      return false;
+    }
+    if (phone_supplier === '') {
+        alert('Por favor, preencha o campo telefone.');
+        return false;
+    }
+    if (cep_supplier === '') {
+        alert('Por favor, preencha o campo cep.');
+        return false;
+    }
+    if (state_supplier === '') {
+        alert('Por favor, preencha o campo estado.');
+        return false;
+    }
+    if (city_supplier === '') {
+        alert('Por favor, preencha o campo cidade.');
+        return false;
+    }
+    if (neighborhood_supplier === '') {
+        alert('Por favor, preencha o campo bairro.');
+        return false;
+    }
+    if (numberHouse === '') {
+        alert('Por favor, preencha o campo numero.');
+        return false;
+    }
+    if (address_supplier === '') {
+        alert('Por favor, preencha o campo endereço.');
+        return false;
+    }
+  
+    // Verificar se o preço e quantidade são números
+    if (isNaN(phone_supplier)) {
+      alert('Por favor, insira um valor numérico válido para o telefone.');
+      return false;
+    }
+    if (isNaN(numberHouse)) {
+      alert('Por favor, insira um valor numérico válido para o numero.');
+      return false;
+    }
+    if (isNaN(cep_supplier)) {
+      alert('Por favor, insira um valor numérico válido para o cep.');
+      return false;
+    }
+  }
